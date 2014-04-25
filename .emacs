@@ -27,7 +27,7 @@
 (global-set-key "\C-l" 'goto-line)
 
 ;; auto fill column width
-(setq fill-column 80)
+(setq-default fill-column 120)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; auto save and backupt to C:/temp/
@@ -107,28 +107,71 @@
 
 
 ;; 
-;; JDEE mode
-;; jd dependents: cedet, elib
+;; ================ ELIB ================
+;; 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/elib-1.0/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.0pre7/common/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.0pre7/contrib/")
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.0pre7/eieio/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.0pre7/semantic/")
-(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.0pre7/speedbar/")
 
 
-(require 'cedet)
+;; 
+;; ================ CEDET ================
+;; 
+(load-file "~/.emacs.d/site-lisp/cedet-1.1/common/cedet.el")
+(global-ede-mode 1)			;enable project management system
+(semantic-load-enable-code-helpers)	;enable prototype help and smart completion
+(global-srecode-minor-mode 1)		;enable template insertion menu
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/jdee-2.4.0.1/lisp/")
-(require 'jde)
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/common/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/contrib/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/eieio/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/semantic/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/speedbar/")
+
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/jdee-2.4.1/lisp/")
+(setq jde-help-remote-file-exists-function '("beanshell"))
+(autoload 'jde-mode "jde" "JDE mode" t)
+(setq auto-mode-alist
+      (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
 (setq jde-web-browser "firefox")
 ;; (setq jde-doc-dir "")
+
+
+;;
+;; ================ ECB ================
+;;
+(add-to-list 'load-path "~/.emacs.d/site-lisp/ecb-2.40/")
+(require 'ecb)
+(require 'ecb-autoloads)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(custom-enabled-themes (quote (tsdh-dark)))
+ '(ecb-options-version "2.40"))
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
 
 ;;
 ;; Web Mode
 (add-to-list 'load-path "~/.emacs.d/site-lisp/nxhtml/")
 (load "autostart.el")
 
+;; Workaround the annoying warnings:
+;; Warning (mumamo-per-buffer-local-vars):
+;; Already 'permanent-local t: buffer-file-name
+(when
+    (and
+     (>= emacs-major-version 24)
+     (>= emacs-minor-version 2))
+  (eval-after-load "mumamo"
+    '(setq mumamo-per-buffer-local-vars
+       (delq 'buffer-file-name mumamo-per-buffer-local-vars))))
 ;;
 ;; ================ Python ================
 ;;
@@ -165,23 +208,6 @@
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
 
-;;
-;; ================ ECB ================
-;;
-(add-to-list 'load-path "~/.emacs.d/site-lisp/ecb-2.40/")
-(require 'ecb)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.40"))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- )
 
 ;;
 ;; ================ Miscellenous ================
