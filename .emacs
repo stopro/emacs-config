@@ -47,8 +47,8 @@
     (setenv "PATH"
 	    (concat
 	     "C:/cygwin/bin/" ";"
-	     "C:/Python321rc1" ";"
-	     "C:/Python321rc1/Lib" ";"
+	     "C:/Python33" ";"
+	     "C:/Python33/Lib" ";"
 	     "C:/WINDOWS/system32" ";"
 	     "C:/WINDOWS" ";"
 	     "D:/workspace/devt/apache-ant-1.7.1/bin" ";"
@@ -67,7 +67,7 @@
     (setq exec-path
 	  '(
 	    "C:/cygwin/bin/" ";"
-	    "C:/Python321rc1/" ";"
+	    "C:/Python33/" ";"
 	    "C:/myProgramFiles/Java/jdk1.6.0_17/bin" ";"
 	    "C:/myProgramFiles/global/bin" ";"
 	    "C:/Program Files/Aspell/bin"
@@ -115,6 +115,9 @@
 ;; 
 ;; ================ CEDET ================
 ;; 
+(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/eieio")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/semantic/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/cedet-1.1/speedbar/")
 (load-file "~/.emacs.d/site-lisp/cedet-1.1/common/cedet.el")
 (global-ede-mode 1)			;enable project management system
 (semantic-load-enable-code-helpers)	;enable prototype help and smart completion
@@ -179,7 +182,7 @@
 ;;(autoload 'python-mode "python-mode" "Python Mode." t)
 ;;(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 ;;(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(setq pdb-path ' C:/Python321rc1/Lib/pdb.py
+(setq pdb-path ' C:/Python33/Lib/pdb.py
       gud-pdb-command-name (symbol-name pdb-path))
 
 ;; http://lists.gnu.org/archive/html/help-gnu-emacs/2003-10/msg00577.html
