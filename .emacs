@@ -32,9 +32,9 @@
 
 ;; auto save and backupt to C:/temp/
 (setq backup-directory-alist
-      `((".*" . "C:/temp")))
+      `((".*" . "~/temp")))
 (setq auto-save-file-name-transforms
-      `((".*" "c:/temp" t)))
+      `((".*" "~/temp" t)))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -213,7 +213,10 @@
 (autoload 'puppet-mode "puppet-mode.el" "Major mode for editing puppet manifests")
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
-
+;; 
+;; ================ Mit-Scheme ================
+;;
+(setq scheme-program-name "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
 
 ;;
 ;; ================ Miscellenous ================
