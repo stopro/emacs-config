@@ -227,6 +227,11 @@
 ;;
 (setq scheme-program-name "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
 
+;; 
+;; ================ Javascript ================
+;; 
+(setq js-indent-level 2)
+
 ;;
 ;; ================ Miscellenous ================
 ;; 
