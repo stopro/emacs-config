@@ -18,6 +18,12 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
+(setq-default tab-width 2)
+;; (setq-default indent-tabs-mode nil)
+;; (setq indent-line-function 'insert-tab)
+;; (setq tabify nil)
+(setq-default c-basic-offset 4)
+
 ;; show line number at left margin
 (global-linum-mode 1)
 ;; show column number
@@ -153,9 +159,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(ansi-color-names-vector
+	 ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-enabled-themes (quote (tsdh-dark)))
- '(ecb-options-version "2.40"))
+ '(ecb-options-version "2.40")
+ '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -206,6 +214,7 @@
 (add-hook 'groovy-mode-hook
           '(lambda ()
              (require 'groovy-electric)
+	     (c-set-offset 'label 4)
              (groovy-electric-mode)))
 
 ;;
